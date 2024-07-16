@@ -1,33 +1,16 @@
-<?php
-// Import des ressources
-require_once 'db_connexion.php';
-
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: /index.php');
-    exit();
-}
-
-//Initialisation de la PDO pour se connecter à la BDD
-$pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
-
-
-?>
-
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
-    <link rel="stylesheet" href="/styles/navbar.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/navbar.css">
 </head>
 
 <body>
 
-    <nav>
+<nav>
         <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
             <button><a href="authentification/authIns.php">S'incrire</a></button>
@@ -36,6 +19,17 @@ $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
         </div>
 
     </nav>
+
+    <div class="form-container">
+        <h2>Créer une tâche</h2>
+        <form method="POST" action="">
+            <input type="text" name="titre" placeholder="Titre" required>
+            <label for="action">Action :</label>
+            <input type="checkbox" name="action">
+            <input type="date" name="date">
+            <button type="submit" name="create">Créer</button>
+        </form>
+    </div>
 </body>
 
 </html>
