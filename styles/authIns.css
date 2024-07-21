@@ -1,1 +1,107 @@
+/* Déclaration des variables */
+:root{
+    --background-color: bisque;
+    --background-body: #332f2f;
+    --bouton_hover: rgb(7, 67, 7);
+    --bouton: rgb(3, 92, 3);
+    --border-radius: 8px;
+}
+
+/* Styliser les balises suivantes */
+body, h2, form, table, nav{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    background-color:var(--background-body);
+    color: #333;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+} 
+
+h2 {
+    margin-bottom: 20px;
+
+}
+
+.form-container{
+    margin: 100px 450px;
+  
+    background-color:var(--background-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="checkbox"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: block;
+    box-sizing: border-box;
+}
+
+form label {
+    margin-top: 10px;
+    display: block;
+    font-weight: bold;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: var(--bouton);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color:var(--bouton_hover);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border: var(--bordure);
+    text-align: left;
+}
+
+table th {
+    background-color: var(--background-color);
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
 

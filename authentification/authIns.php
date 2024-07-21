@@ -32,9 +32,8 @@ if (isset($_POST['inscrire'])) {
     <nav>
         <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
-            <button><a href="authentification/authIns.php">S'incrire</a></button>
-            <button><a href="authentification/authCon.php">Se connecter</a></button>
-            <button><a href="logout.php">Déconnexion</a></button>
+            <button><a href="authIns.php">S'incrire</a></button>
+            <button><a href="./authCon.php">Se connecter</a></button>
         </div>
 
     </nav>

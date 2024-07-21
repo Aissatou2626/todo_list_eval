@@ -1,45 +1,91 @@
-
-:root{
+/* Déclaration des variables */
+:root {
     --background-color: bisque;
-    --background-body: #ffffff;
+    --background-body: #332f2f;
     --bordure: green;
-    --bouton: rgb(6, 138, 6);
+    --border-radius: 8px;
+    --bouton: rgb(3, 92, 3);
     --white: rgb(248, 242, 242);
+    --bouton_hover: rgb(7, 67, 7);
+    --box-shadow: rgba(0, 0, 0, 0.1);
+    --nav-height: 100px;
 }
 
-nav{
+*{
     margin: 0;
     padding: 0;
-    height: 150px;
+}
+
+body {
+    background-color: var(--background-body);
+}
+
+nav {
+    margin: 0;
+    padding: 0 20px;
+    height: var(--nav-height);
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--background-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--box-shadow);
     position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-    
+nav .logo img {
+    width: 90px;
 }
-nav .logo img{
-    width:150px;
-}
+
 nav .button-container {
-    background: var(--bouton);
     display: flex;
-    gap: 10px;
+    gap: 25px;
 }
-nav button a{
+
+nav .button-container button {
     background: var(--bouton);
     color: var(--white);
     border: none;
+    border-radius: var(--border-radius);
     padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s ;
 }
-nav button a{
+
+nav .button-container button:hover {
+    background: var(--button-hover);
+}
+
+nav .button-container a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.bouton_insc_con {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 40px;
+}
+
+.bouton_insc_con button {
+    background: var(--bouton);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bouton_insc_con button:hover {
+    background: var(--button-hover);
+}
+
+.bouton_insc_con a {
     color: inherit;
     text-decoration: none;
 }
-nav button{
-    border-radius: 5px;
-}
+

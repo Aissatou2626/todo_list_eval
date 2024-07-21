@@ -12,21 +12,20 @@ if (isset($_POST['login'])) {
         $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+    
+    
+        if ($user && password_verify($password, $user['password'])) {
 
+            $_SESSION['user_id'] = $user['id'];
+            header('Location: ../model/todos.php');
+            exit();
+        } else {
+            $error = "Identifiants incorrects";
+        }
 
-
-    if ($user && password_verify($password, $user['password'])) {
-
-        $_SESSION['user_id'] = $user['id'];
-        header('Location: ../model/todos.php');
-        exit();
-        var_dump($user);
-    } else {
-        $error = "Identifiants incorrects";
-    }
-} else {
-    $error = "Veuillez remplir tous les champs";
+    }else {
+        $error = "Veuillez remplir tous les champs";
+    } 
 }
 
 ?>
@@ -38,7 +37,9 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion </title>
-    <link rel="stylesheet" href="../styles/authCon.css">
+
+    <!--Mise en forme du formulaire de connexion-->
+    <link rel="stylesheet" href="../styles/authIns.css">
     <link rel="stylesheet" href="../styles/navbar.css">
 </head>
 
@@ -47,14 +48,14 @@ if (isset($_POST['login'])) {
     <nav>
         <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
-            <button><a href="authentification/authIns.php">S'incrire</a></button>
-            <button><a href="authentification/authCon.php">Se connecter</a></button>
-            <button><a href="logout.php">Déconnexion</a></button>
+            <button><a href="./authIns.php">S'incrire</a></button>
+            <button><a href="authCon.php">Se connecter</a></button>
+        
         </div>
 
     </nav>
     <div class="form-container">
-        <h1>Connexion</h1>
+        <h1>Connexion </h1>
         <form action="" method="post">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Mot de passe" required>

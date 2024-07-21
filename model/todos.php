@@ -16,7 +16,7 @@ $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
 
 
 // Requête pour obtenir les 5 dernières tâches de l'utilisateur
-$requete = 'SELECT * FROM taches WHERE user_id = :user_id ORDER BY date DESC LIMIT 5';
+$requete = 'SELECT * FROM taches WHERE user_id = :user_id ORDER BY Date DESC LIMIT 5';
 $stmt = $pdo->prepare($requete);
 $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
 $stmt->execute();
@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>TODO List</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/btn_crud.css">
 </head>
 
 <body>
@@ -68,20 +69,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav>
         <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
-            <button><a href="authentification/authIns.php">S'incrire</a></button>
-            <button><a href="authentification/authCon.php">Se connecter</a></button>
+            <button><a href="authentification/authCon.php">Retour</a></button>
             <button><a href="logout.php">Déconnexion</a></button>
         </div>
 
     </nav>
+
     <div class="button_crud">
-        <button><a href="create_taches.php">Créer tâche</a></button>
-        <button><a href="update_taches.php">Modifier tâche</a></button>
-        <button><a href="delete_taches.php">Supprimer tâche</a></button>
+        <button><a href="crud_taches/create_taches.php">+ Ajouter une tâche</a></button>
+        <button><a href="crud_taches/update_taches.php">Modifier une tâche</a></button>
 
     </div>
 
-    <h2>Vos dernières tâches</h2>
+    <h2>Vos 5 dernières tâches</h2>
     <table class="form-container">
         <tr>
             <th>Id</th>
@@ -90,20 +90,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <th>Action</th>
             <th>Date</th>
             <th>Date de modification</th>
+            <th>Suppression</th>
         </tr>
         <?php
-
-        // Afficher les données  de la todo list
-
-        foreach ($listeTaches as $key => $tache) {
+        // Afficher les données de la todo list et bouton pour suppression de tâches
+        foreach ($listeTaches as $tache) {
             echo '<tr>';
-            foreach ($tache as $valeur) {
-                echo '<td>' . $valeur . '</td>';
+            foreach ($tache as $key => $valeur) {
+                echo '<td>' . htmlentities($valeur, ENT_QUOTES) . '</td>';
             }
+            echo '<td>
+            <form method="POST" action="crud_taches/delete_taches.php">
+                <input type="hidden" name="idTache" value="' . $tache['id'] .'">
+                <button type="submit" name="delete">Supprimer</button>
+            </form>
+          </td>';
             echo '</tr>';
         }
-
         ?>
+
+
     </table>
 </body>
 
