@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données
-require_once '../../db_connexion.php';
+require_once '../../services/db_connexion.php';
 session_start();
 
 // Vérification de la session utilisateur
@@ -30,10 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        
         // J'exécute la requête
         $stmt->execute();
-
+        
         $nb = $stmt->rowCount();
     }
     header('Location: ../todos.php');
+ 
 
 }
 
@@ -60,10 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <nav>
-        <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
+        <a href="page_d_accueil.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
         
-            <button><a href="../../authentification/authCon.php">Retour</a></button>
+            <button><a href="../todos.php">Retour</a></button>
             <button><a href="logout.php">Se déconnecter</a></button>
         </div>
 
@@ -76,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <li>
                 <form method="POST" action="">
                     <input type="hidden" name="idTache" id="idTache" value="<?= $tache['id']?>">
+                    <label for="Titre tâche"></label>
                     <input type="text" name="titre" value="<?php echo htmlspecialchars($tache['titre']); ?>" required>
                     <input type="date" name="date" value="<?php echo $tache['date']; ?>" required>
                     <label for="action">Action :</label>

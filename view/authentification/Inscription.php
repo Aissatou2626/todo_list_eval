@@ -1,6 +1,6 @@
 <?php
 // Import des ressources
-require_once '../db_connexion.php';
+require_once '../../services/db_connexion.php';
 
 // Traitement du formulaire d'inscription
 if (isset($_POST['inscrire'])) {
@@ -10,7 +10,7 @@ if (isset($_POST['inscrire'])) {
 
     $stmt = $pdo->prepare("INSERT INTO users (nom, email, password) VALUES (?, ?, ?)");
     $stmt->execute([$nom, $email, $password]);
-    header('Location: /authentification/authCon.php');
+    header('Location: /authentification/connexion.php');
 }
 
 ?>
@@ -22,8 +22,8 @@ if (isset($_POST['inscrire'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link rel="stylesheet" href="../styles/authIns.css">
-    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../../styles/authIns.css">
+    <link rel="stylesheet" href="../../styles/navbar.css">
 </head>
 
 <body>

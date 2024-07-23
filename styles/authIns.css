@@ -25,7 +25,9 @@ body {
 
 h2 {
     margin-bottom: 20px;
-
+}
+p{
+    color: red;
 }
 
 .form-container{

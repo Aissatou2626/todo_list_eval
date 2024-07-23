@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données
-require_once '../db_connexion.php';
+require_once '../../services/db_connexion.php';
 
 // Démarrage de la session
 session_start();

@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données
-require_once '../db_connexion.php';
+require_once '../../services/db_connexion.php';
 session_start();
 
 // Vérification de la session utilisateur
@@ -9,47 +9,24 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$userId = $_SESSION['user_id'];
-
-// Initialisation de la PDO pour se connecter à la BDD
 $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['delete'])) {
+        $id = $_POST['idTache'];
 
-// Requête pour obtenir les 5 dernières tâches de l'utilisateur
-$requete = 'SELECT * FROM taches WHERE user_id = :user_id ORDER BY Date DESC LIMIT 5';
-$stmt = $pdo->prepare($requete);
-$stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
-$stmt->execute();
-$listeTaches = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Préparation de la requête de suppression
+        $stmt = $pdo->prepare("DELETE FROM taches WHERE id = :id AND user_id = :user_id");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':user_id', $_SESSION['user_id']);
 
-// Si le $_POST est défini, traiter le formulaire de création de tâches
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Je nettoie les données du formulaire
-    $_POST = filter_input_array(INPUT_POST, [
-        'titre' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-        'action' => FILTER_VALIDATE_BOOLEAN,
-        'date' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    ]);
-
-    // J'hydrate les variables pour remplacer les paramètres de la requête
-    $titre = $_POST['titre'];
-    $action = isset($_POST['action']) ? 1 : 0;
-    $date = $_POST['date'];
-
-    // J'écris ma requête paramétrée et nommée
-    $requete = 'INSERT INTO taches (user_id, titre, date, action) VALUES (:user_id, :titre, :date, :action)';
-    $stmt = $pdo->prepare($requete);
-    $stmt->bindParam(':user_id', $userId);
-    $stmt->bindParam(':titre', $titre);
-    $stmt->bindParam(':action', $action);
-    $stmt->bindParam(':date', $date);
-    $stmt->execute();
-
-    // Rediriger pour rafraîchir la liste des tâches
-    header('Location: ../model/todos.php');
-    exit();
+        // Exécution de la requête
+        $stmt->execute();
+    }
+    header('Location: ../todos.php');
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -58,16 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO List</title>
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/navbar.css">
-    <link rel="stylesheet" href="../styles/btn_crud.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/navbar.css">
+    <link rel="stylesheet" href="../../styles/btn_crud.css">
 </head>
 
 <body>
     <!--navbar-->
 
     <nav>
-        <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
+        <a href="page_d_accueil.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
             <button><a href="authentification/authCon.php">Retour</a></button>
             <button><a href="logout.php">Déconnexion</a></button>

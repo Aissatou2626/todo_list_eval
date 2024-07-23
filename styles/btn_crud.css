@@ -7,7 +7,7 @@
 }
 
 /* Styliser les balises suivantes */
-body, h2, form, table, nav{
+body, form, table, nav{
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;

@@ -6,6 +6,8 @@
     --bouton: rgb(3, 92, 3);
     --bouton_hover: rgb(7, 67, 7);
     --border-radius: 8px;
+    --white: rgb(248, 242, 242);
+
 }
 
 body {
@@ -14,11 +16,23 @@ body {
     padding: 0;
     background-color: var(--background-body);
 }
+h1{
+    color: var(--white);
+    text-align: center;
+    font-size: 60px;
+    margin: 40px 0 30px 0;
+}
+h2{
+    color: var(--white);
+    text-align: center;
+    font-size: xx-large;
+    margin: 20px 0 20px 0;
+}
 
 .bouton_insc_con {
     display: flex;
     justify-content: center;
-    margin-top: 230px;
+    margin-top: 100px;
     gap: 100px;
 }
 

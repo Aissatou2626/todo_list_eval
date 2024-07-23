@@ -1,15 +1,12 @@
 <?php
 // Import des ressources
-require_once 'db_connexion.php';
+require_once './services/db_connexion.php';
 
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: /index.php');
     exit();
 }
-
-//Initialisation de la PDO pour se connecter à la BDD
-$pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
 
 
 ?>
@@ -29,13 +26,18 @@ $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
     <nav>
         <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
-            <button><a href="authentification/authIns.php">S'incrire</a></button>
-            <button><a href="authentification/authCon.php">Se connecter</a></button>
+            <button><a href="./view/authentification/Inscription.php">S'incrire</a></button>
+            <button><a href="./view/authentification/connexion.php">Se connecter</a></button>
         </div>
     </nav>
+
+    <h1>Ma page d'accueil</h1>
+    <!--<h2>Cliquez sur le bouton s'inscrire si vous n'avez de compte !</h2>
+    <h2>Cliquez sur le bouton se connecter si vous avez déjà un compte !</h2>-->
+
     <div class="bouton_insc_con">
-        <button><a href="/authentification/authIns.php">S'incrire</a></button>
-        <button><a href="/authentification/authCon.php">Se connecter</a></button>
+        <button><a href="./view/authentification/Inscription.php">S'incrire</a></button>
+        <button><a href="./view/authentification/connexion.php">Se connecter</a></button>
     </div>
 </body>
 </html>

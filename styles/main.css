@@ -18,14 +18,14 @@ body {
     background-color:var(--background-body);
     color: #333;
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 100vh;
     flex-direction: column;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    color: var(--white);
 }
 
 .form-container {
