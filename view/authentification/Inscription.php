@@ -1,4 +1,5 @@
 <?php
+// Ici, le CREATE du DRUD de la table users
 // Import des ressources
 require_once '../../services/db_connexion.php';
 
@@ -10,7 +11,7 @@ if (isset($_POST['inscrire'])) {
 
     $stmt = $pdo->prepare("INSERT INTO users (nom, email, password) VALUES (?, ?, ?)");
     $stmt->execute([$nom, $email, $password]);
-    header('Location: /authentification/connexion.php');
+    header('Location: ./connexion.php');
 }
 
 ?>
@@ -30,10 +31,10 @@ if (isset($_POST['inscrire'])) {
 
 
     <nav>
-        <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
+        <a href="../../index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
-            <button><a href="authIns.php">S'incrire</a></button>
-            <button><a href="./authCon.php">Se connecter</a></button>
+            <button><a href="./Inscription.php">S'incrire</a></button>
+            <button><a href="./connexion.php">Se connecter</a></button>
         </div>
 
     </nav>

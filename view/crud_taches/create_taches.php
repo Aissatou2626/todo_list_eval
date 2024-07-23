@@ -5,7 +5,7 @@ session_start();
 
 // Vérification de la session utilisateur
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../../authentification/connexion.php');
+    header('Location: ../authentification/connexion.php');
     exit();
 }
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if($titre && $date){
     $stmt = $pdo->prepare("INSERT INTO taches (user_id, titre, date, action) VALUES (?, ?, ?, ?)");
     if($stmt->execute([$userId, $titre, $date, $action])){
-        header('Location: ../../view/todos.php');
+        header('Location: ../todos.php');
         exit();
     }else{
         $error = "Erreur lors de la création de la tâche.";
@@ -57,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <nav>
         <a href="../../index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
-            <button><a href="../../authentification/authCon.php">Retour</a></button>
-            <button><a href="logout.php">Se déconnecter</a></button>
+            <button><a href="../authentification/connexion.php">Retour</a></button>
+            <button><a href="../authentification/logout.php">Se déconnecter</a></button>
         </div>
 
     </nav>
@@ -69,9 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p><?php echo $error; ?></p>
         <?php endif; ?>
         <form method="POST" action="">
+            <label for="titre">Tâche :</label>
             <input type="text" name="titre" placeholder="Titre" required>
             <label for="action">Action :</label>
             <input type="checkbox" name="action">
+            <label for="date">Date limite :</label>
             <input type="date" name="date">
             <button type="submit" name="create">Créer</button>
         </form>

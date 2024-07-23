@@ -5,7 +5,7 @@ session_start();
 
 // Vérification de la session utilisateur
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../authentification/authCon.php');
+    header('Location: ../authentification/connexion.php');
     exit();
 }
 // S'il est connecté , il peut alors mofifier ses données 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $idUser = $_POST['idUser'];
         $nom = $_POST['nom'];
         $email = $_POST['email'];
-        $password = $_POST['email'];
+        $password = $_POST['password'];
         
         $password_hasher = password_hash($password, PASSWORD_BCRYPT);
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }else{
             echo "Erreur lors de la modification. ";
         }
-        header('Location: ../../../../authentification/authCon.php');
+        header('Location: ../authentification/connexion.php');
     }
    
 }
@@ -68,12 +68,12 @@ $users = $stmt->fetchAll();
         <?php foreach ($users as $user) : ?>
             <form action="" method="post">
                 <input type="hidden" name="idUser" id="idUser" value="<?= $user['id'] ?>">
-                <label for="Nom">Nom :</label>
+                <label for="nom">NOM :</label>
                 <input type="text" name="nom" value="<?php echo htmlspecialchars($user['nom']); ?>" required>
-                <label for="password">Email :</label>
-                <input type="email" name="email" value="<?php echo $user['email']; ?>" required>
-                <label for="password">password :</label>
-                <input type="password" name="password" <?php if ($user['password']) echo 'password'; ?>>
+                <label for="email">EMAIL :</label>
+                <input type="email" name="email" value="<?php echo $user['email']; ?>" required></br>
+                <label for="password">PASSWORD :</label>
+                <input type="password" name="password" value="<?php if ($user['password']) echo 'password'; ?>">
                 <button type="submit" name="update">Modifier</button>
             </form>
         <?php endforeach ?>

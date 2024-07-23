@@ -8,9 +8,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-//Initialisation de la PDO pour se connecter à la BDD
-$pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
-
 
 ?>
 
@@ -38,6 +35,7 @@ $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
         </div>
     </nav>
     <h1>Page d'accueil</h1>
+    
     <div class="bouton_insc_con">
         <button><a href="/model/crud_users/update_users.php">Modifier le profil</a></button>
         <button><a href="authentification/authCon.php">Supprimer le compte</a></button>

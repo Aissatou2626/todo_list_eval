@@ -1,4 +1,6 @@
 <?php
+// Ici, le READ du CRUD de la table users
+
 // Import des ressources
 require_once '../../services/db_connexion.php';
 session_start();
@@ -52,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
     <nav>
-        <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
+        <a href="../../index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
             <button><a href="./Inscription.php">S'incrire</a></button>
-            <button><a href="connexion.php">Se connecter</a></button>
+            <button><a href="./connexion.php">Se connecter</a></button>
         
         </div>
 

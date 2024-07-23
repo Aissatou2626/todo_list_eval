@@ -40,7 +40,7 @@ p{
     margin-bottom: 30px;
     width: 100%;
     max-width: 500px;
-    text-align: center;
+   
 
 }
 
@@ -52,17 +52,17 @@ form input[type="checkbox"] {
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 4px;
-    display: block;
-    box-sizing: border-box;
+    /* display: block;
+    box-sizing: border-box; */
 }
 
 form label {
     margin-top: 10px;
-    display: block;
     font-weight: bold;
 }
 
 form button {
+    margin-top: 20px;
     padding: 10px 20px;
     background-color: var(--bouton);
     color: #fff;

@@ -5,7 +5,7 @@ session_start();
 
 // Vérification de la session utilisateur
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../authentification/authCon.php');
+    header('Location: ./authentification/connexion.php');
     exit();
 }
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
 
     // Rediriger pour rafraîchir la liste des tâches
-    header('Location: ../view/todos.php');
+    header('Location: ./todos.php');
     exit();
 }
 ?>
@@ -66,23 +66,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav>
         <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
-            <button><a href="../authentification/authCon.php">Retour</a></button>
-            <button><a href="../view/crud_users/update_users.php">Modifier votre profil</a></button>
-            <button><a href="">Supprimer le compte</a></button>
-            <button><a href="../authentification/logout.php">Se déconnecter</a></button>
+            <button><a href="./crud_taches/create_taches.php">Retour</a></button>
+            <button><a href="./crud_users/update_users.php">Modifier votre profil</a></button>
+
+            <!-- Formulaire de suppression de compte -->
+            <form method="POST" action="./crud_users/delete_users.php">
+                <input type="hidden" name="idUser">
+                <button type="submit" name="delete">Supprimer votre compte</button>
+            </form>
+            
+            <button><a href="./authentification/logout.php">Se déconnecter</a></button>
         </div>
 
     </nav>
 
     <div class="button_crud">
-        <button><a href="crud_taches/create_taches.php">+ Ajouter une tâche</a></button>
-        <button><a href="crud_taches/update_taches.php">Modifier une tâche</a></button>
+        <button><a href="./crud_taches/create_taches.php">+ Ajouter une tâche</a></button>
+        <button><a href="./crud_taches/update_taches.php">Modifier une tâche</a></button>
 
     </div>
 
     <h2>Vos 5 dernières tâches</h2>
     <table class="form-container">
-    <tr>
+        <tr>
             <th>Id</th>
             <th>User_id</th>
             <th>Titre</th>
@@ -99,17 +105,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '<td>' . htmlentities($valeur, ENT_QUOTES) . '</td>';
             }
             echo '<td>
-            <form method="POST" action="crud_taches/delete_taches.php">
-                <input type="hidden" name="idTache" value="' . $tache['id'] .'">
+            <form method="POST" action="./crud_taches/delete_taches.php">
+                <input type="hidden" name="idTache" value="' . $tache['id'] . '">
                 <button type="submit" name="delete">Supprimer</button>
             </form>
           </td>';
             echo '</tr>';
         }
         ?>
-
-
     </table>
+
 </body>
 
 </html>

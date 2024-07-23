@@ -11,7 +11,7 @@ $_SESSION = array();
 session_destroy();
 
 // Redirection vers la page de connexion ou d'accueil
-header('Location: ../authentification/authCon.php');
+header('Location: ./connexion.php');
 exit();
 
 ?>

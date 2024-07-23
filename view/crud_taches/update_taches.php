@@ -5,7 +5,7 @@ session_start();
 
 // Vérification de la session utilisateur
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../authentification/authCon.php');
+    header('Location: ../authentification/connexion.php');
     exit();
 }
 $userId = $_SESSION['user_id'];
@@ -64,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="page_d_accueil.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
         
-            <button><a href="../todos.php">Retour</a></button>
-            <button><a href="logout.php">Se déconnecter</a></button>
+            <button><a href="./create_taches.php">Retour</a></button>
+            <button><a href="../authentification/logout.php">Se déconnecter</a></button>
         </div>
 
     </nav>
