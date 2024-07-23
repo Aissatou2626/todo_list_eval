@@ -12,7 +12,11 @@ if (isset($_POST['inscrire'])) {
     $stmt = $pdo->prepare("INSERT INTO users (nom, email, password) VALUES (?, ?, ?)");
     $stmt->execute([$nom, $email, $password]);
     header('Location: ./connexion.php');
+
+    $message = "<span'>Votre compte a été créé avec succès !</span>";
 }
+$message = "<span'>Veuillez renseigner tous les champs et cliquer sur le bouton S'inscrire!</span>";
+
 
 ?>
 
@@ -42,6 +46,10 @@ if (isset($_POST['inscrire'])) {
     <div class="form-container">
         <h1>Inscription</h1>
         <form action="" method="post">
+            <?php if (isset($message)) : ?>
+                <p><?php echo $message; ?></p>
+            <?php endif; ?>
+
             <input type="text" name="nom" placeholder="Nom" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Mot de passe" required>

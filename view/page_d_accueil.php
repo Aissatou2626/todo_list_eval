@@ -1,12 +1,13 @@
 <?php
 // Import des ressources
-require_once 'db_connexion.php';
+require_once '../services/db_connexion.php';
 
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: /index.php');
     exit();
 }
+
 
 
 ?>
@@ -27,19 +28,21 @@ if (!isset($_SESSION['user_id'])) {
 
 
     <nav>
-        <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
+        <a href="./page_d_accueil.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
-            <button><a href="/model/crud_users/update_users.php">Modifier votre profil</a></button>
-            <button><a href="authentification/authCon.php">Supprimer le compte</a></button>
-            <button><a href="authentification/authCon.php">Se déconnecter</a></button>
+            <button><a href="./crud_users/update_users.php">Modifier votre profil</a></button>
+            <button><a href="./crud_users/delete_users.php">Supprimer le compte</a></button>
+            <button><a href="./authentification/logout.php">Se déconnecter</a></button>
         </div>
     </nav>
-    <h1>Page d'accueil</h1>
+    <h1>Bienvenu <?=$nom ;?></h1>
+ 
     
     <div class="bouton_insc_con">
-        <button><a href="/model/crud_users/update_users.php">Modifier le profil</a></button>
-        <button><a href="authentification/authCon.php">Supprimer le compte</a></button>
-        <button><a href="authentification/authCon.php">Se déconnecter</a></button>
+        <button><a href="./crud_taches/update_taches.php">Modifier le profil</a></button>
+        <button><a href="./crud_users/delete_users.php">Supprimer le compte</a></button>
+        <button><a href="./authentification/logout.php">Se déconnecter</a></button>
+        <button><a href="./todos.php">Mes tâches</a></button>
     </div>
 </body>
 

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nom = $_POST['nom'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        
+
         $password_hasher = password_hash($password, PASSWORD_BCRYPT);
 
         //Préparation de la requête de mise à jour
@@ -32,20 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':idUser', $idUser);
 
         // J'exécute la requête
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             echo "Modification réussie !";
-        }else{
+        } else {
             echo "Erreur lors de la modification. ";
         }
         header('Location: ../authentification/connexion.php');
     }
-   
 }
 //Récupération des données de l'utilisateur pour dans le formulaire
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :userId");
 $stmt->bindParam(':userId', $userId);
 $stmt->execute();
-$users = $stmt->fetchAll(); 
+$users = $stmt->fetchAll();
 
 ?>
 
@@ -61,7 +60,17 @@ $users = $stmt->fetchAll();
 </head>
 
 <body>
-    
+
+    <nav>
+        <a href="../page_d_accueil.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
+        <div class="button-container">
+            <button><a href="../authentification/connexion.php">Retour</a></button>
+            <button><a href="./update_users.php">Modifier profil</a></button>
+            <button><a href="../authentification/logout.php">Se déconnecter</a></button>
+        </div>
+
+    </nav>
+
     <h2>Modification de données de l'utilisateur</h2>
 
     <ul class="form-container">

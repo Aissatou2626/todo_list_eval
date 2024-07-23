@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!--navbar-->
 
     <nav>
-        <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
+        <a href="./page_d_accueil.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
         <div class="button-container">
             <button><a href="./crud_taches/create_taches.php">Retour</a></button>
             <button><a href="./crud_users/update_users.php">Modifier votre profil</a></button>
