@@ -15,25 +15,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-      // Vérification des champs obligatoires
+    // Vérification des champs obligatoires
     if ($email && $password) {
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    
-        if ($user && password_verify($password, $user['password'])) {
-            echo "test";
-            $_SESSION['user_id'] = $user['id'];
-            header('Location: ../todos.php');
-            exit();
-        } else {
-            $error = "Identifiants incorrects";
-        }
 
-    }else {
+        // Validation du mot de passe avec regex (au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial)
+        $passwordPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+
+        
+        if (preg_match($passwordPattern, $password)) {
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+            $stmt->execute([$email]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+            if ($user && password_verify($password, $user['password'])) {
+                echo "test";
+                $_SESSION['user_id'] = $user['id'];
+                header('Location: ../todos.php');
+                exit();
+            } else {
+                $error = "Identifiants incorrects";
+            }
+        } else {
+            $error = "Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
+        }
+    } else {
         $error = "Veuillez remplir tous les champs";
-    } 
+    }
 }
 
 ?>
@@ -58,14 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="button-container">
             <button><a href="./Inscription.php">S'incrire</a></button>
             <button><a href="./connexion.php">Se connecter</a></button>
-        
+
         </div>
 
     </nav>
     <div class="form-container">
         <h1>Connexion </h1>
 
-        <?php if (isset($error)): ?>
+        <?php if (isset($error)) : ?>
             <p><?php echo $error; ?></p>
         <?php endif; ?>
         <form action="" method="post">
