@@ -1,0 +1,59 @@
+/* Déclaration des variables */
+:root{
+    --background-color: bisque;
+    --background-body: #332f2f;
+    --bordure: green;
+    --bouton: rgb(3, 92, 3);
+    --bouton_hover: rgb(7, 67, 7);
+    --border-radius: 8px;
+    --white: rgb(248, 242, 242);
+
+}
+
+body {
+
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-body);
+}
+h1{
+    color: var(--white);
+    text-align: center;
+    font-size: 60px;
+    margin: 40px 0 30px 0;
+}
+h2{
+    color: var(--white);
+    text-align: center;
+    font-size: xx-large;
+    margin: 20px 0 20px 0;
+}
+
+.bouton_insc_con {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 100px;
+}
+
+.bouton_insc_con button {
+    background-color:var(--bouton);
+    color: white;
+    border-radius: var(--border-radius);
+    border: none;
+    padding: 15px 20px;
+    width: 250px;
+    height: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bouton_insc_con button:hover {
+    background-color: var(--bouton_hover);
+}
+
+.bouton_insc_con a {
+    text-decoration: none;
+    color: white;
+    font-size: xx-large;
+}

@@ -1,64 +1,42 @@
 <?php
 // Import des ressources
-require_once 'db_connexion.php';
+require_once './services/db_connexion.php';
 
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: /index.php');
+if (isset($_SESSION['user_id'])) {
+    header('Location: ./view/page_d_accueil.php');
     exit();
 }
 
-//Initialisation de la PDO pour se connecter à la BDD
-$pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
-$listeTaches = [];
-$requete = 'SELECT * FROM taches WHERE user_id = id ORDER BY date DESC LIMIT 5';
-var_dump($requete);
 
-// $stmt = $pdo->prepare("SELECT * FROM taches WHERE user_id = ? ORDER BY created_at DESC LIMIT 5");
-$stmt = $pdo->query($requete);
-$listeTaches = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACCUEIL</title>
+
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/accueil.css">
 </head>
 <body>
-  
-    <h2>Vos 5 dernieres tâches</h2>
+    
+    <nav>
+        <a href="index.php" class="logo"><img src="/images/logo_todolist.jpg" alt="logo_todolist"></a>
+        <div class="button-container">
+            <button><a href="./view/authentification/Inscription.php">S'incrire</a></button>
+            <button><a href="./view/authentification/connexion.php">Se connecter</a></button>
+        </div>
+    </nav>
 
-          
-    <!-- Afficher vos 5 derrnières tâches-->
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>User_id</th>
-            <th>Titre</th>
-            <th>Action</th>
-            <th>Date</th>
-            <th>Date de modification</th> 
-        </tr>
-           
+    <h1>Ma page d'accueil</h1>
 
-        <?php
-        // Afficher les données  de la todo list
-        for ($i=0; $i < 5 ; $i++) { 
-            foreach ($listeTaches as $key => $tache){
-                echo '<tr>';
-                foreach($tache as $valeur){
-                    echo '<td>'. $valeur . '</td>';
-                }
-                echo '</tr>';
-            }
-        }
-        
-
-        ?>
-    </table>
-    </ul>
-    <a href="/model/todos.php">Ajouter tâches</a>
+    <div class="bouton_insc_con">
+        <button><a href="./view/authentification/Inscription.php">S'incrire</a></button>
+        <button><a href="./view/authentification/connexion.php">Se connecter</a></button>
+    </div>
+    
 </body>
 </html>
