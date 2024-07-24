@@ -23,6 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Exécution de la requête
         $stmt->execute();
     }
-    header('Location: ../authentification/logout.php');
+    // On détruit la session et on le redirige vers la page d'accueil pour qu'il puisse s'inscrire s'il le souhaite
+    session_destroy();
+    // Suppression du coockie par défault
+    unset($_COOKIE['PHPSESSID']);
+   
+
+    // Destruction de la clé 'user_id' de la variable super globale $_SESSION['user_id'] 
+    unset($userId);
+    header('Location: ../index.php');
+    exit();
 }
 ?>

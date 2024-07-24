@@ -3,8 +3,8 @@
 require_once './services/db_connexion.php';
 
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: /index.php');
+if (isset($_SESSION['user_id'])) {
+    header('Location: ./view/page_d_accueil.php');
     exit();
 }
 
@@ -32,12 +32,11 @@ if (!isset($_SESSION['user_id'])) {
     </nav>
 
     <h1>Ma page d'accueil</h1>
-    <!--<h2>Cliquez sur le bouton s'inscrire si vous n'avez de compte !</h2>
-    <h2>Cliquez sur le bouton se connecter si vous avez déjà un compte !</h2>-->
 
     <div class="bouton_insc_con">
         <button><a href="./view/authentification/Inscription.php">S'incrire</a></button>
         <button><a href="./view/authentification/connexion.php">Se connecter</a></button>
     </div>
+    
 </body>
 </html>
